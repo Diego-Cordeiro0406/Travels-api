@@ -1,3 +1,4 @@
+const passengerIdFromDb = { insertId: 42 }
 const passengerIdFromModel = 42;
 
 const passengersFromModel = [
@@ -39,7 +40,7 @@ const passengerFromDB = {
     email: 'edson.nasc@email.com',
     phone: '(49) 99799-9997',
 };
-  
+
 const passengerFromModel = {
     id: 1,
     name: 'Edson Nascimento',
@@ -49,6 +50,7 @@ const passengerFromModel = {
   
 module.exports = {
     passengerFromDB,
+    passengerIdFromDb,
     passengerFromModel,
     passengersFromModel,
     passengerIdFromModel,
