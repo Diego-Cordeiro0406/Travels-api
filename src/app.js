@@ -1,6 +1,6 @@
 const express = require('express');
 const { travelModel } = require('./models');
-const { carService, passengerService } = require('./services');
+const { carService } = require('./services');
 const { passengerRoutes, driverRoutes } = require('./routes');
 
 const app = express();
@@ -8,24 +8,6 @@ const app = express();
 app.use(express.json());
 app.use('/passengers', passengerRoutes);
 app.use('/drivers', driverRoutes);
-
-app.get('/passengers', async (_req, res) => {
-    const passengers = await passengerService.findAll();
-    return res.status(200).json(passengers.data);
-  });
-
-app.get('/passengers/:passengerId', async (req, res) => {
-    const { passengerId } = req.params;
-    const passenger = await passengerService.findById(passengerId);
-
-    return res.status(200).json(passenger.data);
-  });
-
-app.delete('/passengers/:passengerId', async (req, res) => {
-    const { passengerId } = req.params;
-    await passengerService.deleteById(passengerId);
-    return res.status(204).end();
-  });
 
 app.post('/cars', async (req, res) => {
   const { model, licensePlate, year, color, driverId } = req.body;

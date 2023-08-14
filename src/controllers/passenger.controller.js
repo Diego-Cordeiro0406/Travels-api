@@ -29,8 +29,20 @@ const findById = async (req, res) => {
   res.status(mapStatusHTTP(status)).json(data);
 };
 
+const deleteById = async (req, res) => {
+  const { passengerId } = req.params;
+  const { status } = await passengerService.deleteById(passengerId);
+
+  if (status !== 'NO_CONTENT') {
+    return res.status(mapStatusHTTP(status)).end();
+  }
+
+  return res.status(mapStatusHTTP(status)).end();
+};
+
 module.exports = {
   createTravel,
   findAll,
   findById,
+  deleteById,
 };
