@@ -25,7 +25,7 @@ describe('Realizando testes - DRIVER SERVICE:', function () {
         expect(responseService.status).to.equal('SUCCESSFUL');
         expect(responseService.data).to.deep.equal(driverFromDb);
       });
-      it('Não recupera motorista pelo id caso não tenha', async function () {
+      it('Não recupera motorista caso não tenha', async function () {
         sinon.stub(driversModel, 'findAll').resolves([]);
     
         const responseService = await driverService.findAll();

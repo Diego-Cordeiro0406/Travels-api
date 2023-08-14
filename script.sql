@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS trybecardb;
+DROP DATABASE IF EXISTS travelsapidb;
 CREATE DATABASE travelsapidb;
 
 USE travelsapidb;

@@ -1,6 +1,6 @@
 const express = require('express');
-const { passengerModel, travelModel } = require('./models');
-const { carService } = require('./services');
+const { travelModel } = require('./models');
+const { carService, passengerService } = require('./services');
 const { passengerRoutes, driverRoutes } = require('./routes');
 
 const app = express();
@@ -10,20 +10,20 @@ app.use('/passengers', passengerRoutes);
 app.use('/drivers', driverRoutes);
 
 app.get('/passengers', async (_req, res) => {
-    const passengers = await passengerModel.findAll();
-    return res.status(200).json(passengers);
+    const passengers = await passengerService.findAll();
+    return res.status(200).json(passengers.data);
   });
 
 app.get('/passengers/:passengerId', async (req, res) => {
     const { passengerId } = req.params;
-    const passenger = await passengerModel.findById(passengerId);
-    if (!passenger) return res.status(404).json({ message: 'Passenger not found' });
-    return res.status(200).json(passenger);
+    const passenger = await passengerService.findById(passengerId);
+
+    return res.status(200).json(passenger.data);
   });
 
 app.delete('/passengers/:passengerId', async (req, res) => {
     const { passengerId } = req.params;
-    await passengerModel.deleteById(passengerId);
+    await passengerService.deleteById(passengerId);
     return res.status(204).end();
   });
 
