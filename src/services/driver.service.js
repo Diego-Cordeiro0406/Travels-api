@@ -11,7 +11,9 @@ const findAll = async () => {
 
 const findById = async (driverId) => {
   const data = await driversModel.findById(driverId);
-  if (!data) return { status: 'NOT_FOUND', data: { message: 'Driver not found' } }; 
+  if (!data || data.length === 0) {
+    return { status: 'NOT_FOUND', data: { message: 'Driver not found' } }; 
+  }
   return { status: 'SUCCESSFUL', data };
 };
 
