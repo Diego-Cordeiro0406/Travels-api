@@ -6,6 +6,8 @@ const {
   passengerFromDB,
   passengerFromModel,
   passengersFromModel,
+  passengerIdFromDb,
+  passengerIdFromModel,
 } = require('../mocks/passenger.mock');
 
 describe('Realizando testes - PASSENGER MODEL:', function () {
@@ -25,6 +27,13 @@ describe('Realizando testes - PASSENGER MODEL:', function () {
 
     expect(passenger).to.be.an('array');
     expect(passenger).to.be.deep.equal(passengersFromModel);
+  });
+  it('Inserindo passageiro com sucesso', async function () {
+    sinon.stub(connection, 'execute').resolves([passengerIdFromDb]);
+    const passenger = await passengerModel.insert(passengerFromModel);
+
+    expect(passenger).to.be.an('number');
+    expect(passenger).to.be.deep.equal(passengerIdFromModel);
   });
   it('Deletando passageiro com sucesso', async function () {
     sinon.stub(connection, 'execute').resolves(undefined);

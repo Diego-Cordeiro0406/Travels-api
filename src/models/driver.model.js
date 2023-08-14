@@ -1,6 +1,11 @@
 const camelize = require('camelize');
 const connection = require('./connection');
 
+const {
+  getFormattedColumnNames,
+  getFormattedPlaceholders,
+} = require('../utils/generateFormattedQuery');
+
 const findAll = async () => {
   const [drivers] = await connection.execute(
     'SELECT * FROM drivers',
@@ -15,9 +20,13 @@ const findById = async (driverId) => {
 };
 
 const insert = async (driver) => {
-  const [{ insertId }] = await connection
-  .execute('INSERT INTO drivers(name) VALUES (?)', [driver.name]);
-  return insertId;
+  const columns = getFormattedColumnNames(driver);
+    const placeholders = getFormattedPlaceholders(driver);
+    const query = `INSERT INTO passengers (${columns}) VALUES (${placeholders})`;
+  
+    const [{ insertId }] = await connection.execute(query, [...Object.values(driver)]);
+  
+    return insertId;
 };
 module.exports = {
     findAll,
