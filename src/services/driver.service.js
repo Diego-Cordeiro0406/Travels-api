@@ -4,7 +4,7 @@ const schema = require('./validations/validationsInputValues');
 const findAll = async () => {
   const data = await driversModel.findAll();
   if (!data || data.length === 0) {
-    return { status: 'NOT_FOUND', data: { message: 'there are no registered drivers' } };
+    return { status: 'NOT_FOUND', data: { message: 'There are no registered drivers' } };
   }
   return { status: 'SUCCESSFUL', data };
 };
