@@ -8,6 +8,9 @@ const {
     passengersFromModel,
     passengerFromModel,
     passengerIdFromModel,
+    passengerIdFromDb,
+    passengerWithInvalidNumber,
+    passengerWithInvalidName,
   } = require('../mocks/passenger.mock');
 
   describe('Realizando testes - PASSENGER SERVICE:', function () {
@@ -36,6 +39,28 @@ const {
     
         const responseService = await passengerService.findById();
         expect(responseService.status).to.equal('NOT_FOUND');
+      });
+      it('Inserindo passageiro com sucesso', async function () {
+        sinon.stub(passengerModel, 'insert').resolves(passengerIdFromDb);
+        sinon.stub(passengerModel, 'findById').resolves(passengerIdFromModel);
+    
+        const responseService = await passengerService.insert(passengerFromModel);
+        expect(responseService.status).to.equal('CREATED');
+        expect(responseService.data).to.deep.equal(passengerFromModel);
+      });
+      it('Não insere se número de telefone for inválido', async function () {
+        sinon.stub(passengerModel, 'insert').resolves(passengerWithInvalidNumber);
+        sinon.stub(passengerModel, 'findById').resolves(passengerIdFromModel);
+    
+        const responseService = await passengerService.insert(passengerWithInvalidNumber);
+        expect(responseService.status).to.equal('INVALID_VALUES');
+      });
+      it('Não insere se nome for inválido', async function () {
+        sinon.stub(passengerModel, 'insert').resolves(passengerWithInvalidName);
+        sinon.stub(passengerModel, 'findById').resolves(passengerIdFromModel);
+    
+        const responseService = await passengerService.insert(passengerWithInvalidName);
+        expect(responseService.status).to.equal('INVALID_VALUE');
       });
       it('Deletando passageiro por id com sucesso', async function () {
         sinon.stub(passengerModel, 'deleteById').resolves([]);

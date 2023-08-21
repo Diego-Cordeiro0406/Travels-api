@@ -81,6 +81,17 @@ describe('Realizando testes - TRAVEL SERVICE:', function () {
     expect(responseService.status).to.equal('INVALID_VALUE');
     expect(responseService.data.message).to.equal('"endingAddress" contains an invalid value');
   });
+  it('Não insere travel caso o passageiro não exista', async function () {
+    const inputData = {
+      passengerId: 100,
+      startingAddress: 'same street',
+      endingAddress: 'different street',
+    };
+
+    const responseService = await travelService.requestTravel(inputData);
+    expect(responseService.status).to.equal('NOT_FOUND');
+    expect(responseService.data.message).to.equal('Passenger not found');
+  });
   it('Recuperando travels em aberto com sucesso', async function () {
     sinon.stub(travelModel, 'openTravels').resolves(travelByStatusFromModel);
     const responseData = [{

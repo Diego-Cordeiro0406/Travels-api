@@ -18,6 +18,12 @@ describe('Realizando testes - DRIVER SERVICE:', function () {
         expect(responseService.status).to.equal('SUCCESSFUL');
         expect(responseService.data).to.deep.equal(driversFromDB);
       });
+      it('Não recupera motorista caso não tenha', async function () {
+        sinon.stub(driversModel, 'findAll').resolves([]);
+    
+        const responseService = await driverService.findAll();
+        expect(responseService.status).to.equal('NOT_FOUND');
+      });
       it('Recuperando motorista pelo id com sucesso', async function () {
         sinon.stub(driversModel, 'findById').resolves(driverFromDb);
     
@@ -25,10 +31,10 @@ describe('Realizando testes - DRIVER SERVICE:', function () {
         expect(responseService.status).to.equal('SUCCESSFUL');
         expect(responseService.data).to.deep.equal(driverFromDb);
       });
-      it('Não recupera motorista caso não tenha', async function () {
-        sinon.stub(driversModel, 'findAll').resolves([]);
+      it('Não recupera motorista pelo id caso não tenha', async function () {
+        sinon.stub(driversModel, 'findById').resolves([]);
     
-        const responseService = await driverService.findAll();
+        const responseService = await driverService.findById();
         expect(responseService.status).to.equal('NOT_FOUND');
       });
       it('Inserindo motorista com sucesso', async function () {

@@ -61,6 +61,15 @@ describe('Realizando testes - TRAVEL MODEL:', function () {
     expect(travel).to.be.an('object');
     expect(travel).to.be.deep.equal(travelWithWaypointsFromModel);
   });
+  it(' Não recupera travel por id se não tiver', async function () {
+    sinon.stub(connection, 'execute').resolves([]);
+
+    const inputData = 1;
+    const travel = await travelModel.findById(inputData);
+
+    expect(travel).to.be.an('object');
+    expect(travel).to.be.deep.equal(travelWithWaypointsFromModel);
+  });
 
   it('Recuperando travels com sucesso', async function () {
     sinon.stub(connection, 'execute').resolves([travelByStatusFromDB]);
@@ -70,7 +79,18 @@ describe('Realizando testes - TRAVEL MODEL:', function () {
     expect(travels).to.be.an('array');
     expect(travels).to.be.deep.equal(travelByStatusFromModel);
   });
+  it('Atualizando uma viagem', async function () {
+    sinon.stub(connection, 'execute').resolves();
 
+    let error;
+    try {
+      await travelModel.update(2, 1, 1);
+    } catch (err) {
+      error = err;
+    }
+
+    expect(error).to.be.equal(undefined);
+  });
   afterEach(function () {
     sinon.restore();
   });

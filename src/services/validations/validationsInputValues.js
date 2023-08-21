@@ -1,4 +1,9 @@
-const { addCarSchema, addRequestTravelSchema, addDriverSchema } = require('./schemas');
+const {
+  addCarSchema,
+  addRequestTravelSchema,
+  addDriverSchema,
+  addPassengerSchema,
+} = require('./schemas');
 const { carsModel } = require('../../models');
 
 const validateNewCar = ({ model, licensePlate, year, color, driverId }) => {
@@ -16,6 +21,13 @@ const isValidLicensePlateFormat = (licensePlate) => {
   return licensePlateRegex.test(licensePlate);
 };
 
+const isValidPhoneNumber = (phone) => {
+  // eslint-disable-next-line max-len
+  const phoneNumberRegex = /^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}-?[0-9]{4}$/;
+ 
+  return phoneNumberRegex.test(phone);
+};
+
 const carExists = async (licensePlate) => {
   const car = await carsModel.findByPlate(licensePlate);
   return car || false;
@@ -31,10 +43,17 @@ const validateNewDriver = (objectToValidate) => {
   if (error) return { status: 'INVALID_VALUE', message: error.message };
 };
 
+const validateNewPassenger = (objectToValidate) => {
+  const { error } = addPassengerSchema.validate(objectToValidate);
+  if (error) return { status: 'INVALID_VALUE', message: error.message };
+};
+
 module.exports = {
   validateNewCar,
   isValidLicensePlateFormat,
+  isValidPhoneNumber,
   carExists,
   validateRequestTravel,
   validateNewDriver,
+  validateNewPassenger,
 };
