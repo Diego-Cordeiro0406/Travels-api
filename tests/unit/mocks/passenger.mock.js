@@ -48,6 +48,12 @@ const passengerFromModel = {
     phone: '(49) 99799-9997',
 }
 
+const passengerWithoutId = {
+  name: 'Edson Nascimento',
+  email: 'edson.nasc@email.com',
+  phone: '(49) 99799-9997',
+}
+
 const passengerWithInvalidName = {
   name: 'Ca',
   email: 'edson.nasc@email.com',
@@ -68,4 +74,5 @@ module.exports = {
     passengerIdFromModel,
     passengerWithInvalidNumber,
     passengerWithInvalidName,
+    passengerWithoutId
 };

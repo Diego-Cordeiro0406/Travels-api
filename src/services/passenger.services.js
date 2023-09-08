@@ -41,6 +41,18 @@ const insert = async (passenger) => {
   return { status: 'CREATED', data: newPassenger };
 };
 
+const updatePassenger = async (updatedPassenger, id) => {
+  const error = validateNewPassenger(updatedPassenger);
+  if (error) return { status: error.status, data: { message: error.message } };
+
+  const phoneError = validatePhone(updatedPassenger.phone);
+  if (phoneError) return phoneError;
+
+  await passengerModel.updatePassenger(updatedPassenger, id);
+
+  return { status: 'SUCCESSFUL', data: updatedPassenger };
+};
+
 const deleteById = async (passengerId) => {
   const data = await passengerModel.deleteById(passengerId);
   if (!data) {
@@ -54,4 +66,5 @@ module.exports = {
   findById,
   insert,
   deleteById,
+  updatePassenger,
 };

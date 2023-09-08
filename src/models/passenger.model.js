@@ -23,12 +23,19 @@ const findById = async (passengerId) => {
 
 const insert = async (passenger) => {
   const columns = getFormattedColumnNames(passenger);
-    const placeholders = getFormattedPlaceholders(passenger);
-    const query = `INSERT INTO passengers (${columns}) VALUES (${placeholders})`;
+  const placeholders = getFormattedPlaceholders(passenger);
+  const query = `INSERT INTO passengers (${columns}) VALUES (${placeholders})`;
   
     const [{ insertId }] = await connection.execute(query, [...Object.values(passenger)]);
   
     return insertId;
+};
+
+const updatePassenger = async (updatedPassenger, passengerId) => {
+  const { name, email, phone } = updatedPassenger;
+  await connection
+  .execute(`UPDATE passengers SET name = ?, email = ?, phone = ?
+  WHERE id = ?`, [name, email, phone, passengerId]);
 };
 
 const deleteById = async (passengerId) => {
@@ -40,4 +47,5 @@ module.exports = {
   findById,
   deleteById,
   insert,
+  updatePassenger,
 };

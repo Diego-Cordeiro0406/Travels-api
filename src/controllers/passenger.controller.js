@@ -29,6 +29,31 @@ const findById = async (req, res) => {
   res.status(mapStatusHTTP(status)).json(data);
 };
 
+const insert = async (req, res) => {
+  const passenger = req.body;
+
+  const { status, data } = await passengerService.insert(passenger);
+
+  if (status !== 'CREATED') {
+    return res.status(mapStatusHTTP(status)).json(data);
+  }
+
+  res.status(mapStatusHTTP(status)).json(data);
+};
+
+const updatePassenger = async (req, res) => {
+  const { passengerId } = req.params;
+  const updatedPassenger = req.body;
+
+  const { status, data } = await passengerService.updatePassenger(updatedPassenger, passengerId);
+
+  if (status !== 'SUCCESSFUL') {
+    return res.status(mapStatusHTTP(status)).json(data);
+  }
+
+  res.status(mapStatusHTTP(status)).json(data);
+};
+
 const deleteById = async (req, res) => {
   const { passengerId } = req.params;
   const { status } = await passengerService.deleteById(passengerId);
@@ -44,5 +69,7 @@ module.exports = {
   createTravel,
   findAll,
   findById,
+  insert,
   deleteById,
+  updatePassenger,
 };
