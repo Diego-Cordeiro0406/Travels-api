@@ -64,11 +64,9 @@ describe('Realizando testes - TRAVEL MODEL:', function () {
   it(' Não recupera travel por id se não tiver', async function () {
     sinon.stub(connection, 'execute').resolves([]);
 
-    const inputData = 1;
-    const travel = await travelModel.findById(inputData);
+    const inputData = 199;
 
-    expect(travel).to.be.an('object');
-    expect(travel).to.be.deep.equal(travelWithWaypointsFromModel);
+    expect(await travelModel.findById(inputData)).to.be.equal(undefined);
   });
 
   it('Recuperando travels com sucesso', async function () {

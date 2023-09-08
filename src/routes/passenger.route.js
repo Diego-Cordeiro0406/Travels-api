@@ -8,6 +8,10 @@ route.get('/:passengerId', passengerController.findById);
 
 route.post('/:passengerId/request/travel', validateTravelFields, passengerController.createTravel);
 
+route.post('/', passengerController.insert);
+
+route.put('/:passengerId', passengerController.updatePassenger);
+
 route.delete('/:passengerId', passengerController.deleteById);
 
 module.exports = route;

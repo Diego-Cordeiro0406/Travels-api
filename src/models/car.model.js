@@ -38,6 +38,14 @@ const {
     .execute('SELECT * FROM cars WHERE license_plate = ?', [licensePlate]);
     return car;
   };
+  
+  const updateCar = async () => {
+    // A fazer...
+  };
+
+  const deleteCar = async () => {
+    // A fazer...
+  }; 
 
   module.exports = {
     insert,

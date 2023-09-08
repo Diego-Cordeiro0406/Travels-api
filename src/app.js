@@ -1,6 +1,6 @@
 const express = require('express');
 const { travelModel } = require('./models');
-const { carService, passengerService } = require('./services');
+const { carService } = require('./services');
 const { passengerRoutes, driverRoutes } = require('./routes');
 
 const app = express();
@@ -9,21 +9,13 @@ app.use(express.json());
 app.use('/passengers', passengerRoutes);
 app.use('/drivers', driverRoutes);
 
-app.post('/passengers', async (req, res) => {
-  const passenger = req.body;
-
-  const newPassenger = await passengerService.insert(passenger);
-  console.log(newPassenger.data);
-  res.status(201).json(newPassenger.data);
-});
-
 app.post('/cars', async (req, res) => {
   const { model, licensePlate, year, color, driverId } = req.body;
   const serviceResponse = await carService.createCar({
     model, 
     licensePlate,
     year, 
-    color, 
+    color,
     driverId,
   });
 
