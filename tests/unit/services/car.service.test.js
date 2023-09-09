@@ -44,7 +44,7 @@ describe('Realizando testes - CAR SERVICE:', function () {
     
         const responseService = await carService.createCar(carFromModel);
         expect(responseService.status).to.equal('CREATED');
-        console.log(responseService.data);
+  
         expect(responseService.data).to.deep.equal(carByIdFromModel);
       });
     it('Não insere carro que já existe', async function () {

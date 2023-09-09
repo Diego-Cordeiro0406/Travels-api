@@ -8,12 +8,12 @@ chai.use(sinonChai);
 const { travelService, driverService } = require('../../../src/services');
 const { driverController } = require('../../../src/controllers');
 const {
-    travelFromServiceSuccesssful,
+    travelFromServiceSuccessful,
     travelByStatusFromModel,
     travelFromServiceNotFound,
 } = require('../mocks/travel.mock');
 const {
-    driversFromServiceSuccesssful,
+    driversFromServiceSuccessful,
     driverFromModel,
     driversFromModel,
     driverFromServiceNotFound,
@@ -24,7 +24,7 @@ const {
 
 describe('Realizando testes - DRIVER CONTROLLER:', function () {
     it('Recuperando travel em aberto com sucesso - status 200', async function () {
-        sinon.stub(travelService, 'getOpenTravels').resolves(travelFromServiceSuccesssful);
+        sinon.stub(travelService, 'getOpenTravels').resolves(travelFromServiceSuccessful);
         const req = {
           params: { },
           body: { },
@@ -54,7 +54,7 @@ describe('Realizando testes - DRIVER CONTROLLER:', function () {
         expect(res.json).to.have.been.calledWith(sinon.match.has('message'));
       });
       it('Recuperando todos os motoristas com sucesso - status 200', async function () {
-        sinon.stub(driverService, 'findAll').resolves(driversFromServiceSuccesssful);
+        sinon.stub(driverService, 'findAll').resolves(driversFromServiceSuccessful);
         const req = {
           params: { },
           body: { },

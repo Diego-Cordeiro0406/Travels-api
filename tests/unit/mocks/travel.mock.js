@@ -116,7 +116,7 @@ const travelAcceptedFromModel = {
 }
 
 
-const travelFromServiceSuccesssful = {
+const travelFromServiceSuccessful = {
   status: 'SUCCESSFUL',
   data: travelByStatusFromModel,
 };
@@ -147,7 +147,7 @@ module.exports = {
   travelByStatusFromDB,
   travelByStatusFromModel,
   travelAcceptedFromModel,
-  travelFromServiceSuccesssful,
+  travelFromServiceSuccessful,
   travelFromServiceCreated,
   travelFromServiceInvalidValue,
   travelFromServiceNotFound,

@@ -56,10 +56,10 @@ const updatePassenger = async (req, res) => {
 
 const deleteById = async (req, res) => {
   const { passengerId } = req.params;
-  const { status } = await passengerService.deleteById(passengerId);
+  const { status, data } = await passengerService.deleteById(passengerId);
 
   if (status !== 'NO_CONTENT') {
-    return res.status(mapStatusHTTP(status)).end();
+    return res.status(mapStatusHTTP(status)).json(data);
   }
 
   return res.status(mapStatusHTTP(status)).end();

@@ -66,6 +66,35 @@ const passengerWithInvalidNumber = {
   phone: '(49) 99799-9A97',
 }
 
+const passengerByIdSuccesssful = {
+  status: 'SUCCESSFUL',
+  data: passengerFromModel,
+};
+
+const passengersFromServiceSuccessful = {
+  status: 'SUCCESSFUL',
+  data: passengersFromModel,
+};
+const passengerFromServiceCreated = {
+  status: 'CREATED',
+  data: passengerFromModel,
+};
+const passengerFromServiceInvalidValue = {
+  status: 'INVALID_VALUE',
+  data: { message: 'message' },
+};
+const passengerFromServiceNotFound = {
+  status: 'NOT_FOUND',
+  data: { message: 'message' },
+};
+const passengerFromServiceNoContent = {
+  status: 'NO_CONTENT'
+};
+const passengerFromServiceConflict = {
+  status: 'CONFLICT',
+  data: { message: 'message' },
+};
+
 module.exports = {
     passengerFromDB,
     passengerIdFromDb,
@@ -74,5 +103,12 @@ module.exports = {
     passengerIdFromModel,
     passengerWithInvalidNumber,
     passengerWithInvalidName,
-    passengerWithoutId
+    passengerWithoutId,
+    passengerByIdSuccesssful,
+    passengersFromServiceSuccessful,
+    passengerFromServiceCreated,
+    passengerFromServiceInvalidValue,
+    passengerFromServiceNotFound,
+    passengerFromServiceConflict,
+    passengerFromServiceNoContent,
 };
