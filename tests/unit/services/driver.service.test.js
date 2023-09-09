@@ -8,6 +8,7 @@ const { driversFromModel,
   driverFromDb,
   driverIdModel,
   driverFromModel,
+  driverIdFromDb,
 } = require('../mocks/drivers.mock');
 
 describe('Realizando testes - DRIVER SERVICE:', function () {
@@ -44,6 +45,17 @@ describe('Realizando testes - DRIVER SERVICE:', function () {
         const responseService = await driverService.createDriver(driverFromModel);
         expect(responseService.status).to.equal('CREATED');
         expect(responseService.data).to.deep.equal(driverFromModel);
+      });
+      it('Não insere motorista com dados inválidos', async function () {
+        sinon.stub(driversModel, 'insert').resolves(driverIdFromDb);
+    
+        const data = {
+          id: 1,
+          name: 9,
+          };
+
+        const responseService = await driverService.createDriver(data);
+        expect(responseService.status).to.equal('INVALID_VALUE');
       });
 afterEach(function () {
     sinon.restore();

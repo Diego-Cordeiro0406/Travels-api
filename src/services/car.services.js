@@ -36,16 +36,38 @@ const createCar = async ({ model, licensePlate, year, color, driverId }) => {
     const carId = await carsModel.insert({ model, licensePlate, year, color, driverId });
     const newCar = { id: carId, model, licensePlate, year, color, driverId };
     
-    return { status: 'SUCCESSFUL', data: newCar };
+    return { status: 'CREATED', data: newCar };
 };
 
 const findAll = async () => {
     const cars = await carsModel.findAll();
+
+    if (!cars || cars.length === 0) {
+      return { status: 'NOT_FOUND', data: { message: 'there are no cars registered' } };
+    }
     return { status: 'SUCCESSFUL', data: cars };
 };
+
+const findById = async (carId) => {
+  const car = await carsModel.findById(carId);
+
+  if (!car || car.length === 0) {
+    return { status: 'NOT_FOUND', data: { message: 'Car not found' } };
+  }
+  return { status: 'SUCCESSFUL', data: car };
+};
+
+const updateCar = async () => {
+  // A fazer...
+};
+
+const deleteCar = async () => {
+  // A fazer...
+}; 
 
 module.exports = {
     createCar,
     driverExists,
     findAll,
+    findById,
 };

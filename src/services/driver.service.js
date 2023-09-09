@@ -27,6 +27,14 @@ const createDriver = async (driverDataObject) => {
   return { status: 'CREATED', data: newDriver };
 };           
 
+const updateDriver = async () => {
+  // A fazer...
+};
+
+const deleteDriver = async () => {
+ // A fazer...
+};
+
 module.exports = {
     findAll,
     findById,

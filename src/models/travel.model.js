@@ -63,7 +63,7 @@ const findById = async (travelId) => {
     LEFT JOIN waypoints AS WP 
       ON WP.travel_id = TR.id
     WHERE TR.id = ?;`, [travelId]);
-    console.log(travels);
+  
     if (!travels || travels.length === 0) return undefined;
   
     return groupWaypoints(camelize(travels));
