@@ -57,12 +57,14 @@ const findById = async (carId) => {
   return { status: 'SUCCESSFUL', data: car };
 };
 
-const updateCar = async () => {
-  // A fazer...
-};
+const deleteCar = async (carId) => {
+  const car = await carsModel.findById(carId);
 
-const deleteCar = async () => {
-  // A fazer...
+  if (!car || car.length === 0) {
+    return { status: 'NOT_FOUND', data: { message: 'Car not found' } };
+  }
+  await carsModel.deleteCar(carId);
+  return { status: 'NO_CONTENT' };
 }; 
 
 module.exports = {
@@ -70,4 +72,5 @@ module.exports = {
     driverExists,
     findAll,
     findById,
+    deleteCar,
 };

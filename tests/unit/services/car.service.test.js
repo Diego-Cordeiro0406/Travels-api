@@ -17,7 +17,6 @@ describe('Realizando testes - CAR SERVICE:', function () {
         expect(responseService.status).to.equal('SUCCESSFUL');
         expect(responseService.data).to.deep.equal(carsfromModel);
       });
-
     it('Não recupera carros se não tiver', async function () {
         sinon.stub(carsModel, 'findAll').resolves([]);
     
@@ -98,6 +97,19 @@ describe('Realizando testes - CAR SERVICE:', function () {
 
         const responseService = await carService.createCar(data);
         expect(responseService.status).to.equal('INVALID_VALUE');
+      });
+      it('Deleta carro com sucesso', async function () {
+        sinon.stub(carsModel, 'findById').resolves(carFromModel);
+        sinon.stub(carsModel, 'deleteCar').resolves();
+
+        const responseService = await carService.deleteCar(carIdModel);
+        expect(responseService.status).to.equal('NO_CONTENT');
+      });
+      it('Não deleta carro se não existir', async function () {
+        sinon.stub(carsModel, 'findById').resolves(null);
+
+        const responseService = await carService.deleteCar(carIdModel);
+        expect(responseService.status).to.equal('NOT_FOUND');
       });
     afterEach(function () {
       sinon.restore();

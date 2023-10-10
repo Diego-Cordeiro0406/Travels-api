@@ -33,16 +33,21 @@ const insert = async (req, res) => {
     res.status(mapStatusHTTP(status)).json(data);
   };
 
-const updateCar = async () => {
-    // A fazer...
-  };
+const deleteCar = async (req, res) => {
+    const { carId } = req.params;
 
-const deleteCar = async () => {
-    // A fazer...
+    const { status, data } = await carService.deleteCar(carId);
+
+    if (status !== 'NO_CONTENT') {
+      return res.status(mapStatusHTTP(status)).json(data);
+    }
+  
+    res.status(204).json();
   }; 
 
 module.exports = {
   findAll,
   findById,
   insert,
+  deleteCar,
 };

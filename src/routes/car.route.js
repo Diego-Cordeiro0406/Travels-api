@@ -7,8 +7,6 @@ route.get('/:carId', carController.findById);
 
 route.post('/', carController.insert);
 
-// route.put(/:carId, carController.updateCar);
-
-// route.delete(/:carId, carController.deleteCar);
+route.delete('/:carId', carController.deleteCar);
 
 module.exports = route;

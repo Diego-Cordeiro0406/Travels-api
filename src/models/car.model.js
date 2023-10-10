@@ -38,13 +38,9 @@ const findByPlate = async (licensePlate) => {
     .execute('SELECT * FROM cars WHERE license_plate = ?', [licensePlate]);
     return car;
   };
-  
-const updateCar = async () => {
-    // A fazer...
-  };
 
-const deleteCar = async () => {
-    // A fazer...
+const deleteCar = async (carId) => {
+    await connection.execute('DELETE FROM cars WHERE id = ?', [carId]);
   }; 
 
   module.exports = {
@@ -52,4 +48,5 @@ const deleteCar = async () => {
     findById,
     findAll,
     findByPlate,
+    deleteCar,
   };
