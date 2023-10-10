@@ -54,11 +54,15 @@ const updatePassenger = async (updatedPassenger, id) => {
 };
 
 const deleteById = async (passengerId) => {
-  const data = await passengerModel.deleteById(passengerId);
-  if (!data) {
+  const passengerExists = await passengerModel.findById(passengerId);
+
+  if (!passengerExists || passengerExists.length === 0) {
     return { status: 'NOT_FOUND', data: { message: 'Passenger not found' } };
   }
-  return { status: 'NO_CONTENT', data };
+
+  await passengerModel.deleteById(passengerId);
+
+  return { status: 'NO_CONTENT' };
 };
 
 module.exports = {

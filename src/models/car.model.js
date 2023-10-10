@@ -6,7 +6,7 @@ const {
     getFormattedPlaceholders,
   } = require('../utils/generateFormattedQuery');
   
-  const insert = async (car) => {
+const insert = async (car) => {
     const columns = getFormattedColumnNames(car);
     const placeholders = getFormattedPlaceholders(car);
     const query = `INSERT INTO cars (${columns}) VALUES (${placeholders})`;
@@ -16,7 +16,7 @@ const {
     return insertId;
   };
   
-  const findAll = async () => {
+const findAll = async () => {
     const [cars] = await connection.execute(
       'SELECT * FROM cars',
     );
@@ -24,7 +24,7 @@ const {
     return camelize(cars);
   };
   
-  const findById = async (carId) => {
+const findById = async (carId) => {
     const [[car]] = await connection.execute(
       'SELECT * FROM cars WHERE id = ?',
       [carId],
@@ -33,18 +33,14 @@ const {
     return camelize(car);
   };
   
-  const findByPlate = async (licensePlate) => {
+const findByPlate = async (licensePlate) => {
     const [[car]] = await connection
     .execute('SELECT * FROM cars WHERE license_plate = ?', [licensePlate]);
     return car;
   };
-  
-  const updateCar = async () => {
-    // A fazer...
-  };
 
-  const deleteCar = async () => {
-    // A fazer...
+const deleteCar = async (carId) => {
+    await connection.execute('DELETE FROM cars WHERE id = ?', [carId]);
   }; 
 
   module.exports = {
@@ -52,4 +48,5 @@ const {
     findById,
     findAll,
     findByPlate,
+    deleteCar,
   };

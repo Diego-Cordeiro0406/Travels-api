@@ -62,7 +62,7 @@ const driverByIdSuccesssful = {
   data: driverFromModel,
 };
 
-const driversFromServiceSuccesssful = {
+const driversFromServiceSuccessful = {
   status: 'SUCCESSFUL',
   data: driversFromModel,
 };
@@ -90,7 +90,7 @@ const driverFromServiceConflict = {
     driverFromModel,
     driverIdFromDb,
     driverIdModel,
-    driversFromServiceSuccesssful,
+    driversFromServiceSuccessful,
     driverFromServiceCreated,
     driverFromServiceInvalidValue,
     driverFromServiceNotFound,

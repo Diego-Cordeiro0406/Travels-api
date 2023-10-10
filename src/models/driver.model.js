@@ -28,6 +28,15 @@ const insert = async (driver) => {
   
     return insertId;
 };
+
+const updateDriver = async () => {
+  // A fazer...
+};
+
+const deleteDriver = async () => {
+ // A fazer...
+};
+
 module.exports = {
     findAll,
     findById,

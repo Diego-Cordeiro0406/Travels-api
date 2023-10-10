@@ -10,7 +10,7 @@ services:
     # Mesmo que `docker run -i`
     stdin_open: true
     command: bash
-    restart: always
+    # restart: always
     working_dir: /home/node/app
     volumes:
       - ./:/home/node/app

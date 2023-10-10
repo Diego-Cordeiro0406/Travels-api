@@ -41,6 +41,14 @@ const createDriver = async (req, res) => {
   res.status(mapStatusHTTP(status)).json(data);
 };
 
+const updateDriver = async () => {
+  // A fazer...
+};
+
+const deleteDriver = async () => {
+ // A fazer...
+};
+
 module.exports = {
     openTravels,
     findAll,
