@@ -41,12 +41,16 @@ const createDriver = async (req, res) => {
   res.status(mapStatusHTTP(status)).json(data);
 };
 
-const updateDriver = async () => {
-  // A fazer...
-};
+const deleteDriver = async (req, res) => {
+  const { driverId } = req.params;
 
-const deleteDriver = async () => {
- // A fazer...
+  const { status, data } = await driverService.deleteDriver(driverId);
+  
+  if (status !== 'NO_CONTENT') {
+    return res.status(mapStatusHTTP(status)).json(data);
+  }
+
+  res.status(mapStatusHTTP(status)).json();
 };
 
 module.exports = {
@@ -54,4 +58,5 @@ module.exports = {
     findAll,
     findById,
     createDriver,
+    deleteDriver,
 };

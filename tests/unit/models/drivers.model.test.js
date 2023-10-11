@@ -24,10 +24,10 @@ describe('Realizando testes - DRIVERS MODEL:', function () {
   it('Recuperando motorista por id com sucesso', async function () {
     sinon.stub(connection, 'execute').resolves([[driverFromDb]]);
     const driverId = 1;
-    const drivers = await driversModel.findById(driverId);
+    const driver = await driversModel.findById(driverId);
 
-    expect(drivers).to.be.an('object');
-    expect(drivers).to.be.deep.equal(driverFromModel);
+    expect(driver).to.be.an('object');
+    expect(driver).to.be.deep.equal(driverFromModel);
   });
 
   it('Inserindo motorista com sucesso', async function () {
@@ -38,6 +38,14 @@ describe('Realizando testes - DRIVERS MODEL:', function () {
 
     expect(driverInsertId).to.be.an('number');
     expect(driverInsertId).to.be.equal(driverIdModel);
+  });
+  it('Deleta motorista com sucesso', async function () {
+    sinon.stub(connection, 'execute').resolves();
+
+    const driverId = 1;
+    const drivers = await driversModel.deleteDriver(driverId);
+
+    expect(drivers).to.be.an('undefined');
   });
 
   afterEach(function () {

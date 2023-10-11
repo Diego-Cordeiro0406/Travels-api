@@ -14,6 +14,8 @@ const {
   carByIdSuccesssful,
   carByIdFromModel,
   carFromServiceDelete,
+  carFromServiceCreated,
+  carFromModel,
 } = require('../mocks/cars.mock');
 
 describe('Realizando testes - CAR CONTROLLER:', function () {
@@ -60,6 +62,35 @@ describe('Realizando testes - CAR CONTROLLER:', function () {
       await carController.findById(req, res);
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(carByIdFromModel);
+    });
+  it('Inserindo carro com sucesso - status 201', async function () {
+      sinon.stub(carService, 'createCar').resolves(carFromServiceCreated);
+      const req = {
+        params: { },
+        body: { },
+      };
+      const res = {
+        status: sinon.stub().returnsThis(),
+        json: sinon.stub(),
+      };
+  
+      await carController.insert(req, res);
+      expect(res.status).to.have.been.calledWith(201);
+      expect(res.json).to.have.been.calledWith(carFromModel);
+    });
+  it('Não insere carro caso motorista não exista - status 404', async function () {
+      sinon.stub(carService, 'createCar').resolves(carsFromServiceNotFound);
+      const req = {
+        params: { },
+        body: { },
+      };
+      const res = {
+        status: sinon.stub().returnsThis(),
+        json: sinon.stub(),
+      };
+  
+      await carController.insert(req, res);
+      expect(res.status).to.have.been.calledWith(404);
     });
   it('Não recupera carro por id se não tiver - status 404', async function () {
       sinon.stub(carService, 'findById').resolves(carsFromServiceNotFound);

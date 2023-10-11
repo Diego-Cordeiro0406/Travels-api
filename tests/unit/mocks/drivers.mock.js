@@ -57,6 +57,10 @@ const driverFromModel = {
       name: "Liana Cisneiros"
 }
 
+const driverToInsert = {
+  name: "Liana Cisneiros"
+}
+
 const driverByIdSuccesssful = {
   status: 'SUCCESSFUL',
   data: driverFromModel,
@@ -83,6 +87,10 @@ const driverFromServiceConflict = {
   data: { message: 'message' },
 };
 
+const driverFromServiceDelete = {
+  status: 'NO_CONTENT',
+};
+
   module.exports = {
     driversFromDB,
     driversFromModel,
@@ -96,4 +104,6 @@ const driverFromServiceConflict = {
     driverFromServiceNotFound,
     driverFromServiceConflict,
     driverByIdSuccesssful,
+    driverFromServiceDelete,
+    driverToInsert,
   };

@@ -8,7 +8,7 @@
     "dev": "nodemon --ignore coverage src/server.js",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx",
     "test": "mocha tests/**/*.js --watch",
-    "test:coverage": "nyc --all --include src/models --include src/services --include src/controllers mocha tests/unit/**/*.js --exit"
+    "test:coverage": "nyc --all --include src/models --include src/services --include src/controllers mocha tests/unit/**/*.js tests/integration/**/*.js --exit"
   },
   "repository": {
     "type": "git",
