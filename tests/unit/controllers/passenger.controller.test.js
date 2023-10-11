@@ -162,7 +162,6 @@ describe('Realizando testes - PASSENGER CONTROLLER:', function () {
 
     await passengerController.insert(req, res);
     expect(res.status).to.have.been.calledWith(201);
-    console.log(res.json);
     expect(res.json).to.have.been.calledWith(passengerFromModel);
   });
   it('Não insere passageiro com nome inválido - status 422', async function () {
@@ -178,7 +177,6 @@ describe('Realizando testes - PASSENGER CONTROLLER:', function () {
 
     await passengerController.insert(req, res);
     expect(res.status).to.have.been.calledWith(422);
-    console.log(res.json);
     expect(res.json).to.have.been.calledWith(sinon.match.has('message'));
   });
   it('Atualiza passageiro com sucesso - status 200', async function () {
@@ -194,7 +192,6 @@ describe('Realizando testes - PASSENGER CONTROLLER:', function () {
 
     await passengerController.updatePassenger(req, res);
     expect(res.status).to.have.been.calledWith(200);
-    console.log(res.json);
     expect(res.json).to.have.been.calledWith(passengerFromModel);
   });
   it('Não atualiza passageiro com dados inválidos - status 422', async function () {
@@ -210,7 +207,7 @@ describe('Realizando testes - PASSENGER CONTROLLER:', function () {
 
     await passengerController.updatePassenger(req, res);
     expect(res.status).to.have.been.calledWith(422);
-    console.log(res.json);
+    
     expect(res.json).to.have.been.calledWith(sinon.match.has('message'));
   });
   it('Deleta passageiro com sucesso - status 204', async function () {

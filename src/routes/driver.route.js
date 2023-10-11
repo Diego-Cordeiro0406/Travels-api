@@ -10,4 +10,6 @@ route.get('/:driverId', driverController.findById);
 
 route.post('/', validateDriverFields, driverController.createDriver);
 
+route.delete('/:driverId', driverController.deleteDriver);
+
 module.exports = route;

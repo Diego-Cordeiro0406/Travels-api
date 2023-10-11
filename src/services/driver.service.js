@@ -27,16 +27,19 @@ const createDriver = async (driverDataObject) => {
   return { status: 'CREATED', data: newDriver };
 };           
 
-const updateDriver = async () => {
-  // A fazer...
-};
+const deleteDriver = async (driverId) => {
+  const driver = await driversModel.findById(driverId);
 
-const deleteDriver = async () => {
- // A fazer...
+  if (!driver || driver.length === 0) {
+    return { status: 'NOT_FOUND', data: { message: 'Driver not found' } };
+  }
+  await driversModel.deleteDriver(driverId);
+  return { status: 'NO_CONTENT' };
 };
 
 module.exports = {
     findAll,
     findById,
     createDriver,
+    deleteDriver,
 };

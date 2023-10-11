@@ -57,6 +57,20 @@ describe('Realizando testes - DRIVER SERVICE:', function () {
         const responseService = await driverService.createDriver(data);
         expect(responseService.status).to.equal('INVALID_VALUE');
       });
+      it('Deleta motorista com sucesso', async function () {
+        sinon.stub(driversModel, 'findById').resolves(driverFromDb);
+        sinon.stub(driversModel, 'deleteDriver').resolves();
+
+        const responseService = await driverService.deleteDriver(driverIdModel);
+        expect(responseService.status).to.equal('NO_CONTENT');
+      });
+      it('Não deleta motorista caso não exista', async function () {
+        sinon.stub(driversModel, 'findById').resolves();
+        sinon.stub(driversModel, 'deleteDriver').resolves();
+
+        const responseService = await driverService.deleteDriver(driverIdModel);
+        expect(responseService.status).to.equal('NOT_FOUND');
+      });
 afterEach(function () {
     sinon.restore();
   });

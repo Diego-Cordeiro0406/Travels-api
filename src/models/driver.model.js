@@ -22,23 +22,20 @@ const findById = async (driverId) => {
 const insert = async (driver) => {
   const columns = getFormattedColumnNames(driver);
     const placeholders = getFormattedPlaceholders(driver);
-    const query = `INSERT INTO passengers (${columns}) VALUES (${placeholders})`;
+    const query = `INSERT INTO drivers (${columns}) VALUES (${placeholders})`;
   
     const [{ insertId }] = await connection.execute(query, [...Object.values(driver)]);
   
     return insertId;
 };
 
-const updateDriver = async () => {
-  // A fazer...
-};
-
-const deleteDriver = async () => {
- // A fazer...
+const deleteDriver = async (driverId) => {
+  await connection.execute('DELETE FROM drivers WHERE id = ?', [driverId]);
 };
 
 module.exports = {
     findAll,
     findById,
     insert,
+    deleteDriver,
 };

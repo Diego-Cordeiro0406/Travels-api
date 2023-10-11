@@ -69,6 +69,12 @@ const carByIdSuccesssful = {
     status: 'SUCCESSFUL',
     data: carByIdFromModel,
   };
+
+const carFromServiceCreated = {
+    status: 'CREATED',
+    data: carFromModel,
+  };
+
 const carsFromServiceNotFound = {
     status: 'NOT_FOUND',
     data: { message: 'message' },
@@ -85,6 +91,7 @@ module.exports = {
   carByIdFromModel,
   carsFromServiceSuccessful,
   carByIdSuccesssful,
+  carFromServiceCreated,
   carsFromServiceNotFound,
   carFromServiceDelete,
 }

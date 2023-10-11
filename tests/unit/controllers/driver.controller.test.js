@@ -20,6 +20,7 @@ const {
     driverByIdSuccesssful,
     driverFromServiceCreated,
     driverFromServiceInvalidValue,
+    driverFromServiceDelete,
 } = require('../mocks/drivers.mock');
 
 describe('Realizando testes - DRIVER CONTROLLER:', function () {
@@ -142,6 +143,34 @@ describe('Realizando testes - DRIVER CONTROLLER:', function () {
         await driverController.createDriver(req, res);
         expect(res.status).to.have.been.calledWith(422);
         expect(res.json).to.have.been.calledWith(sinon.match.has('message'));
+      });
+    it('Deleta motorista com sucesso - status 204', async function () {
+        sinon.stub(driverService, 'deleteDriver').resolves(driverFromServiceDelete);
+        const req = {
+          params: { driverId: 1 },
+          body: { },
+        };
+        const res = {
+          status: sinon.stub().returnsThis(),
+          json: sinon.stub(),
+        };
+    
+        await driverController.deleteDriver(req, res);
+        expect(res.status).to.have.been.calledWith(204);
+      });
+    it('Não deleta se motorista não existir - status 404', async function () {
+        sinon.stub(driverService, 'deleteDriver').resolves(driverFromServiceNotFound);
+        const req = {
+          params: { driverId: 1 },
+          body: { },
+        };
+        const res = {
+          status: sinon.stub().returnsThis(),
+          json: sinon.stub(),
+        };
+    
+        await driverController.deleteDriver(req, res);
+        expect(res.status).to.have.been.calledWith(404);
       });
   afterEach(function () {
     sinon.restore();
