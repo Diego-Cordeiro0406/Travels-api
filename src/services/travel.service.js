@@ -10,7 +10,7 @@ const requestTravel = async (travelDataObject) => {
 
   const newTravelId = await travelModel.insert(travelDataObject);
   const newTravel = await travelModel.findById(newTravelId);
-  return { status: 'SUCCESSFUL', data: newTravel };
+  return { status: 'CREATED', data: newTravel };
 };
 
 const getOpenTravels = async () => {
