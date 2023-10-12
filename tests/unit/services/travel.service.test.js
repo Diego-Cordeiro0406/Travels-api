@@ -34,7 +34,7 @@ describe('Realizando testes - TRAVEL SERVICE:', function () {
     };
 
     const responseService = await travelService.requestTravel(inputData);
-    expect(responseService.status).to.equal('SUCCESSFUL');
+    expect(responseService.status).to.equal('CREATED');
     expect(responseService.data).to.deep.equal(responseData);
   });
   it('Inserindo travel com waypoints com sucesso', async function () {
@@ -66,7 +66,7 @@ describe('Realizando testes - TRAVEL SERVICE:', function () {
     };
 
     const responseService = await travelService.requestTravel(inputData);
-    expect(responseService.status).to.equal('SUCCESSFUL');
+    expect(responseService.status).to.equal('CREATED');
     expect(responseService.data.waypoints).to.have.lengthOf(2);
     expect(responseService.data).to.deep.equal(responseData);
   });

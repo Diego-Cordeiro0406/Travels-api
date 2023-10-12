@@ -25,6 +25,33 @@ const travelFromModel = {
   waypoints: [],
 };
 
+const travelToInsert = {
+  startingAddress: "starting street",
+  endingAddress: "end street"
+}
+
+const travelInvalidToInsert = {
+  potato: "starting street",
+  papaya: "end street"
+}
+
+const travelWithInvalidWaypointsToInsert = {
+  startingAddress: "starting street",
+  endingAddress: "end street",
+  waypoints: [
+    { batata: "Rua Quatro de Março", stopOrder: 1 },
+    { address: "Rua Sete de Setembro", stopOrder: 2 }
+  ]
+}
+
+const travelWithEmptyWaypoints = {
+  startingAddress: "starting street",
+  endingAddress: "end street",
+  waypoints: [
+    { address: "", stopOrder: 1 },
+  ]
+}
+
 
 
 const travelWithWaypointsFromDB = [
@@ -151,4 +178,8 @@ module.exports = {
   travelFromServiceCreated,
   travelFromServiceInvalidValue,
   travelFromServiceNotFound,
+  travelToInsert,
+  travelWithInvalidWaypointsToInsert,
+  travelInvalidToInsert,
+  travelWithEmptyWaypoints,
 };
