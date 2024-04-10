@@ -1,5 +1,5 @@
 {
-  "name": "trybecar",
+  "name": "travels-api",
   "version": "1.0.0",
   "description": "<!-- ADICIONAR INFORMAÇÕES SOBRE A BRANCH `INITIAL-SETUP` -->",
   "main": "index.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tryber/trybecar.git"
+    "url": "git+https://github.com/tryber/travelsapi.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tryber/trybecar/issues"
+    "url": "https://github.com/tryber/travelsapi/issues"
   },
-  "homepage": "https://github.com/tryber/trybecar#readme",
+  "homepage": "https://github.com/tryber/travelsapi#readme",
   "devDependencies": {
     "chai": "4.3.4",
     "chai-http": "4.3.0",
