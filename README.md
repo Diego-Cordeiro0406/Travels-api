@@ -14,6 +14,37 @@ Api de gerenciamento de viagens de carro.
 - Mocha, sinon e chai(testes automatizados)
 
 
+## Rodando localmente
+
+certifique-se de ter o node.js docker e docker-compose instalados
+
+Clone o projeto
+
+```bash
+  git clone git@github.com:Diego-Cordeiro0406/Travels-api.git
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd Travels-api
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  docker-compose up -d
+  docker exec -it travelsapi bash
+  npm run dev
+```
+
+
 
 
 ## Fazendo requisições do tipo GET
@@ -281,3 +312,11 @@ Api de gerenciamento de viagens de carro.
 ```http
   DELETE /drivers/{driverId}
 ```
+## Rodando os testes
+
+Para rodar os testes certifique-se de ter seguido os passos na seção de instalação, em seguida execute o seguinte comando:
+
+```bash
+  npm test
+```
+
